@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box;
+}
+
+#gameboard {
+  display: grid;
+  grid: repeat(3, 1fr) / repeat(3, 1fr)
+}
+
+.square {
+  border: 3px solid black;
+  width: 100px;
+  height: 100px;
+}
