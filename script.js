@@ -19,6 +19,12 @@ const gameFlow = ( function() {
       return getUserSquareChoice(boardSquares)
     }
   }
+
+  function checkForDraw(board) {
+    if (!board.some(square => square.getMarker() == '')) {
+      return true 
+    }
+  }
   
   function Player(name, marker) {
     this.name = name;
@@ -71,20 +77,24 @@ const gameFlow = ( function() {
       console.log('win')
       player.won = true;
       return true;
+    } else if (checkForDraw(gameBoard.squares)) {
+      draw = true
+      return true;
     } else {
       console.log('no win')
+
     }
     return false;
   }
-  
+  let draw = false
   do {
-    if (playerTurn(Player1)) break;
+    if (playerTurn(Player1) ) break;
     if (playerTurn(Player2)) break;
   } while (!checkWin(gameBoard.squares));
-  if (Player.won) {
-    console.log('hooray, player 1 won')
+  if (!draw) {
+    console.log(`Player has won`)
   } else {
-    console.log('hooray, player 2 won')
+    console.log('its a draw')
 
   }
 })
